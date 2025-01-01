@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "NodeNext",
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "declarationDir": "lib",
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "nodenext",
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "strict": true
+  },
+  "include": [
+    "@types/**/*",
+    "index.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
