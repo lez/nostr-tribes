@@ -1,21 +1,25 @@
 # Nostr Tribes
 
-Typescript library to work with tribes.
+Typescript library to work with Nostr tribes in the browser.
+
+Find out more about tribes at https://tribewiki.org/Tribe
 
 ## Usage
 
 Basic usage:
 ```
 let tribe = new Tribe("<leader-pubkey>", "<tribe-id>", [relays])
-await tribe.sync()  // Fetch members
+await tribe.sync()  // Fetch members and their names
 
 some_events = nostr.fetchEvents({some: filter})
 
-event_judgements = await tribe.judge(some_events)
-// Returns {[event_id]: [verdict, object, stamps]}
-// You should display events based on verdict.
+let judgements = await tribe.judgeEvents(some_events)
+// Returns {[event_id]: [verdict, object, stamp]}
+// verdict is either 'curate', 'neutral' or 'ban'
+// object is either 'pubkey' or 'event'
+// if object is 'event', the corresponding kind:78 stamp is returned as the 3rd item in the list
 
-tribe.stamp_event(some_events[0])  // Curate the first event using the browser extension.
+await tribe.stamp_event(some_event)  // Curate some event and upload the stamp to the tribe relays.
 
-tribe.stamp_pubkey(some_events[1].pubkey)  // Add a new member to the tribe
+await tribe.stamp_pubkey(some_event.pubkey)  // Add a new member to the tribe, store stamp on the tribe relays.
 ```
